@@ -1,0 +1,6 @@
+youtube_dl
+BeautifulSoup4
+requests
+lxml
+wheel
+wheel --wheel-dir=/wheel/cx_Freeze-6.0-cp38-cp38-win_amd64.whl -r requirements.txt
