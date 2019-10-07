@@ -10,7 +10,7 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.parse
 
-class x():
+class converter():
 
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -19,16 +19,15 @@ class x():
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
+        'outtmpl':'music/%(title)s-%(id)s.%(ext)s'
     }
 
     def __init__(self):
-        self.songname = "lil peep & lil tracy - cobain" 
-        #input("song name: ")
+        self.songname = input("song name: ")
         self.main()
 
     def convert(self, info):
-        print(info)
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        with youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
             ydl.download([info["href"]])
 
     def main(self):
@@ -58,4 +57,4 @@ class x():
             self.main()
 
 if __name__ == "__main__":
-    x()
+    converter()
