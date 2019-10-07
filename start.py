@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 # made by:              Pretpacked
 # creation date:        04-10-2019
@@ -10,7 +11,8 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.parse
 
-class converter():
+
+class converter:
 
     ydl_opts = {
         'format': 'bestaudio/best',
@@ -19,7 +21,7 @@ class converter():
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'outtmpl':'music/%(title)s-%(id)s.%(ext)s'
+        'outtmpl': 'music/%(title)s-%(id)s.%(ext)s'
     }
 
     def __init__(self):
@@ -33,16 +35,16 @@ class converter():
     def main(self):
         try:
             self.songsArray = [{}]
-            print("searching for '{song}' on youtube\n".format(song= self.songname))
+            print("searching for '{song}' on youtube\n".format(song=self.songname))
 
             i = 0
             page = requests.get("https://www.youtube.com/results?search_query={filter}".format(filter=urllib.parse.quote(self.songname.encode('utf-8'))))
             soup = BeautifulSoup(page.content, 'lxml')
-            for elem in soup.find_all(("a", {"id" : "video-title"})):
+            for elem in soup.find_all(("a", {"id": "video-title"})):
                 if "watch?v=" in elem.get("href") and elem.get("title"):
                     i = i + 1
-                    print("{number} - {title}".format(number=i,title=elem.get('title')))
-                    self.songsArray[0][i] = {"title":elem.get('title'),"href":"https://www.youtube.com{}".format(elem.get('href'))}
+                    print("{number} - {title}".format(number=i, title=elem.get('title')))
+                    self.songsArray[0][i] = {"title": elem.get('title'), "href": "https://www.youtube.com{}".format(elem.get('href'))}
 
             print("\n[0] - other song.")
             self.songNumberChoosen = int(input("\nsong number: "))
@@ -54,7 +56,9 @@ class converter():
 
         except:
             print("Error, please try again")
-            self.main()
+            self.__init__()
 
+
+# if run directly
 if __name__ == "__main__":
     converter()
