@@ -1,7 +1,22 @@
 #!/usr/bin/env python
+import sys
 from cx_Freeze import setup, Executable
 
-setup(name = "reandurllib" ,
-      version = "0.1" ,
-      description = "testing" ,
-      executables = [Executable("start.py")])
+application_name = "youtube converting"
+application_version = "0.0.1"
+application_description = "testing"
+
+dependecies = [
+	"youtube_dl",
+	"BeautifulSoup4",
+	"requests",
+	"lxml",
+	"wheel"
+]
+
+setup(name = application_name ,
+	version = application_version ,
+    description = application_description  ,
+	requires = dependecies ,
+    executables = [Executable("start.py", base = None)]
+)

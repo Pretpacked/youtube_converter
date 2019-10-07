@@ -10,6 +10,7 @@ import youtube_dl
 import requests
 from bs4 import BeautifulSoup
 import urllib.parse
+import queue
 
 
 class converter:
@@ -32,7 +33,8 @@ class converter:
         with youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
             ydl.download([info["href"]])
 
-        if input("\nConvert another song? [y][n]") == "y":
+	again = input("\nConvert another song? [y][n]")
+	if again == "y":
             self.__init__()
 
     def main(self):
