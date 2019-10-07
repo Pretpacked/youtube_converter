@@ -1,0 +1,4 @@
+youtube_dl
+BeautifulSoup4
+requests
+lxml
