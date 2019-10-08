@@ -33,8 +33,7 @@ class converter:
         with youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
             ydl.download([info["href"]])
 
-	again = input("\nConvert another song? [y][n]")
-	if again == "y":
+        if input("\nConvert another song? [y][n]") == "y":
             self.__init__()
 
     def main(self):
