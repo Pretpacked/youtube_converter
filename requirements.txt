@@ -2,3 +2,5 @@ youtube_dl
 BeautifulSoup4
 requests
 lxml
+wheel
+cx-freeze
