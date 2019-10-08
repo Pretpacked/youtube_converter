@@ -42,12 +42,12 @@ class converter:
             songsArray = {}
             print("searching for '{song}' on youtube\n".format(song=self.songname))
 
-            page = requests.get("https://www.youtube.com/results?search_query={filter}".format(filter=urllib.parse.quote(self.songname.encode('utf-8'))))
-            soup = BeautifulSoup(page.content, 'lxml')
+            pageYT = requests.get("https://www.youtube.com/results?search_query={filter}".format(filter=urllib.parse.quote(self.songname.encode('utf-8'))))
+            soupYT = BeautifulSoup(pageYT.content, 'lxml')
 
             n = 0
 
-            for elem in soup.find_all(("a", {"id": "video-title"})):
+            for elem in soupYT.find_all(("a", {"id": "video-title"})):
                 if "watch?v=" in elem.get("href") and elem.get("title"):
                     n = n + 1
                     print("{number:>3} - {title}".format(number=n, title=elem.get('title')))
@@ -71,6 +71,7 @@ class converter:
 
 # if run directly
 if __name__ == "__main__":
+    print("You can use links for instantly downloading or search for names.\n")
     try:
         converter()
     except (KeyboardInterrupt, EOFError):
