@@ -3,8 +3,8 @@ import sys
 from cx_Freeze import setup, Executable
 
 application_name = "youtube converting"
-application_version = "0.0.1"
-application_description = "testing"
+application_version = "1.0"
+application_description = "Linux first realease."
 
 dependecies = [
 	"youtube_dl",

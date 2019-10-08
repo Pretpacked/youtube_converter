@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 import urllib.parse
 import queue
 from sys import exit
-
+from urllib.parse import urlparse
 
 class converter:
 
@@ -28,14 +28,20 @@ class converter:
 
     def __init__(self):
         self.songname = input("song name: ")
-        self.main()
+        self.checkIfLink()
 
-    def convert(self, info):
+    def convertYoutube(self, info):
         with youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
             ydl.download([info["href"]])
 
         if input("\nConvert another song? [y][n]") == "y":
             self.__init__()
+
+    def checkIfLink(self):
+        if urlparse(self.songname)[0] and urlparse(self.songname)[1]:
+            self.convertYoutube({"href":self.songname})
+        else:
+            self.main()
 
     def main(self):
         try:
